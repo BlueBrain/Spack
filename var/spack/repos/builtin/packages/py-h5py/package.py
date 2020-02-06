@@ -1,4 +1,4 @@
-# Copyright 2013-2019 Lawrence Livermore National Security, LLC and other
+# Copyright 2013-2020 Lawrence Livermore National Security, LLC and other
 # Spack Project Developers. See the top-level COPYRIGHT file for details.
 #
 # SPDX-License-Identifier: (Apache-2.0 OR MIT)
@@ -35,10 +35,10 @@ class PyH5py(PythonPackage):
     depends_on('py-six', type=('build', 'run'))
 
     # Link dependencies
-    depends_on('hdf5@1.8.4:+hl~mpi', when='~mpi')
+    depends_on('hdf5@1.8.4:+hl')
 
     # MPI dependencies
-    depends_on('hdf5@1.8.4:+hl+mpi', when='+mpi')
+    depends_on('hdf5+mpi', when='+mpi')
     depends_on('mpi', when='+mpi')
     depends_on('py-mpi4py', when='+mpi', type=('build', 'run'))
 

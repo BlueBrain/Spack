@@ -39,7 +39,7 @@ modules:
       - py-h5py%gcc
       - py-numpy%gcc
       - py-virtualenv
-      - 'tensorflow@1.12.0'
+      - 'py-tensorflow@2.1.0'
     blacklist:
       - '%gcc'
       - '%intel'
