@@ -14,6 +14,7 @@ class Morphio(CMakePackage):
     git      = "https://github.com/BlueBrain/MorphIO.git"
 
     version('develop', git=url, submodules=True)
+    version('2.3.11', tag='v2.3.11', submodules=True)
     version('2.3.9', tag='v2.3.9', submodules=True)
     version('2.3.4', tag='v2.3.4', submodules=True)
     version('2.2.1', tag='v2.2.1', submodules=True)
@@ -23,12 +24,15 @@ class Morphio(CMakePackage):
     variant('mpi', default=True, description="Build with MPI support")
 
     depends_on('cmake@3.2:', type='build')
-    depends_on('hdf5~mpi', when='~mpi')
-    depends_on('hdf5+mpi', when='+mpi')
+    depends_on('highfive~mpi', when='~mpi')
+    depends_on('highfive+mpi', when='+mpi')
     depends_on('mpi', when='+mpi')
 
     def cmake_args(self):
-        args = ['-DBUILD_BINDINGS:BOOL=OFF']
+        args = [
+            '-DBUILD_BINDINGS:BOOL=OFF',
+            '-DEXTERNAL_HIGHFIVE:BOOL=ON'
+        ]
         if self.spec.satisfies("+mpi"):
             args += [
                 '-DCMAKE_C_COMPILER={0}'.format(self.spec['mpi'].mpicc),
