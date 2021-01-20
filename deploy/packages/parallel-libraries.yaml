@@ -46,6 +46,7 @@ packages:
       - mpi
       - lapack
     specs:
+      - gmsh+metis+mpi+oce+openmp+shared@4.4.1
       - hypre@2.18.2
       - trilinos@xsdk-0.4.0-rc1
       - omega-h+trilinos@9.33.0.dev1

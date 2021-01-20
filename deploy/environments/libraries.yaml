@@ -30,7 +30,7 @@ spack:
     - deflect
     - eigen
     - fmt
-    - gmsh
+    - gmsh+metis+mpi+oce+openmp+shared@4.4.1
     - hdf5~mpi
     - highfive~mpi
     - hypre@2.18.2
