@@ -14,6 +14,8 @@ class Sionlib(AutotoolsPackage):
 
     version('1.7.6', sha256='e85253ed3cd17a3b1c124ccd704caea3ad3c200abfcca9cc0851cb14f5a60691', extension='tar.gz')
 
+    variant('fortran', default=False, description='Enable Fortran support')
+
     depends_on('mpi')
     patch('for_aarch64.patch', when='target=aarch64:')
 
@@ -23,9 +25,12 @@ class Sionlib(AutotoolsPackage):
 
         if spec.satisfies('^intel-mpi'):
             args.append('--mpi=intel2')
-        elif spec.satisfies('^mpich') or spec.satisfies('^mvapich2'):
+        elif spec.satisfies('^mpich') or spec.satisfies('^mvapich2') or spec.satisfies('^hpe-mpi'):
             args.append('--mpi=mpich2')
         elif spec.satisfies('^openmpi'):
             args.append('--mpi=openmpi')
+
+        if spec.satisfies('~fortran'):
+            args.append('--disable-fortran')
 
         return args
