@@ -334,6 +334,25 @@ pipeline {
                         build_and_deploy_docker()
                     }
                 }
+
+                stage('Sync to TDS') {
+                    when {
+                        not {
+                            expression {
+                                return env.ghprbPullId
+                            }
+                        }
+                    }
+
+                    steps {
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            sh """
+                                shopt -s extglob
+                                rsync -av --exclude="2018-12-*" ${DEPLOYMENT_ROOT}/{config,deploy,modules,spack} bbptadm:${DEPLOYMENT_ROOT}
+                            """
+                        }
+                    }
+                }
             }
         }
     }
