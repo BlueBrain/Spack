@@ -32,7 +32,7 @@ class PyBluepysnap(PythonPackage):
     depends_on('py-click@7.0:', type='run')
 
     depends_on('py-cached-property@1.0:', type='run')
-    depends_on('py-more-itertools@7.2.0:', type='run')
+    depends_on('py-more-itertools@8.2.0:', type='run')
 
     # Version 0.8.0 is the switch between the python2+python3
     # and python3 only + the h5py > 3.0.0

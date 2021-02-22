@@ -28,6 +28,7 @@ class PyBluepy(PythonPackage):
     version('0.12.7', tag='bluepy-v0.12.7')
 
     depends_on('py-setuptools', type=('build', 'run'))
+    depends_on('py-pip', type='run')
 
     # the version of bluepy <2 needed multiple dependencies compatible
     # with h5py < 3.0.0 and bluepy > 2 needs h5py > 3.0.0. Hence the
@@ -89,3 +90,9 @@ class PyBluepy(PythonPackage):
         # bluepy.index requires libFLATIndex, unavailable on spack
         modules = super(PyBluepy, self).import_modules
         return [m for m in modules if m != 'bluepy.index']
+
+    def test(self):
+        super(PyBluepy, self).test()
+        self.run_test(
+            python.path, ['-mpip', 'check'], purpose='checking dependencies'
+        )
