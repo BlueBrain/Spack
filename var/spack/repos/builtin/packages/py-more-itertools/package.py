@@ -12,8 +12,6 @@ class PyMoreItertools(PythonPackage):
     homepage = "https://github.com/erikrose/more-itertools"
     url      = "https://pypi.io/packages/source/m/more-itertools/more-itertools-8.7.0.tar.gz"
 
-    import_modules = ['more_itertools', 'more_itertools.tests']
-
     version('8.7.0', sha256='c5d6da9ca3ff65220c3bfd2a8db06d698f05d4d2b9be57e1deb2be5a45019713')
     version('7.2.0', sha256='409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832')
     version('7.0.0', sha256='c3e4748ba1aad8dba30a4886b0b1a2004f9a863837b8654e7059eebf727afa5a')

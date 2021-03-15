@@ -735,6 +735,19 @@ EOF
 
     installed-hashes -e "${HOME}/build_environment" > "${HOME}/specs.txt"
 
+    # All BlueBrain packages:
+    find "${SPACK_ROOT}/var/spack/repos/builtin/packages" -name package.py|while read fn
+    do
+        grep -q -e 'bbpcode\|bbpgitlab\|BlueBrain' "${fn}" && echo "$(basename $(dirname ${fn}))" || true
+    done > "${HOME}/bluebrain.txt"
+    # All BlueBrain packages in specs.txt:
+    specs=$(awk '{if (ARGIND == 1) { ours[$1] = 1 } else { split($2, parts, "[ @%~+^]"); if (ours[parts[1]]) { print parts[1] } }}' "${HOME}/bluebrain.txt" "${HOME}/specs.txt")
+    # Test only those specs:
+    if [ -n "${specs}" ]
+    then
+        spack -D "${HOME}/build_environment" test run --log-format junit --log-file "${HOME}/stack-test.xml" ${specs}
+    fi
+
     populate_build_cache "${install_start}"
 
     mkdir -p "${WORKSPACE:-.}/stacks/${what}"

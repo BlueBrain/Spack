@@ -26,6 +26,6 @@ class PyLuigi(PythonPackage):
     depends_on('py-tornado@5.0:6.99', type=('build', 'run'), when='@3.0.2:')
 
     depends_on('py-python-daemon@:2.1', type=('build', 'run'))
-    depends_on('py-python-dateutil@2.7.5:2.99', when='@2.8.3:', type=('build', 'run'))
+    depends_on('py-python-dateutil@2.7.5:2.999', when='@2.8.3:', type=('build', 'run'))
 
     depends_on('py-pytest@3.3.0:', type='test')

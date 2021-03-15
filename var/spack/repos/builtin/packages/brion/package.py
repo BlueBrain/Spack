@@ -78,7 +78,6 @@ class Brion(CMakePackage):
                 ninja('doxygen', 'doxycopy')
 
     @when('+python')
-    @run_after('install')
     def test(self):
         site_dir = self._get_site_dir()
         for target in (self.prefix.lib, self.prefix.lib64):

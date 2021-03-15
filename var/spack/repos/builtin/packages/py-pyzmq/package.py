@@ -11,6 +11,16 @@ class PyPyzmq(PythonPackage):
     homepage = "https://github.com/zeromq/pyzmq"
     url      = "https://github.com/zeromq/pyzmq/archive/v14.7.0.tar.gz"
 
+    # We don't support the CFFI interface. Reading the sources, seems to be
+    # a second class citizen, anyways
+    import_modules = [
+        'zmq', 'zmq.green', 'zmq.green.eventloop', 'zmq.sugar', 'zmq.auth',
+        'zmq.auth.asyncio', 'zmq.utils', 'zmq.backend',  # 'zmq.backend.cffi',
+        'zmq.backend.cython', 'zmq.ssh', 'zmq.eventloop',
+        'zmq.eventloop.minitornado', 'zmq.eventloop.minitornado.platform',
+        'zmq.log', 'zmq.asyncio', 'zmq.devices'
+    ]
+
     version('19.0.0', sha256='d197fc01dc67372066143e5e85dcd3a97ec759ceb76927b7de83cda05eb06006')
     version('18.1.1', sha256='b79afea8701970f0da15218abf9c2c6a39ab3dd8daaef25b868f55f9d9304687')
     version('18.1.0', sha256='32f7618b8104021bc96cbd60be4330bdf37b929e8061dbce362c9f3478a08e21')
@@ -20,11 +30,11 @@ class PyPyzmq(PythonPackage):
     version('14.7.0', sha256='809a5fcc720d286c840f7f64696e60322b5b2544795a73db626f09b344d16a15')
 
     depends_on('python@2.7:2.8,3.3:', type=('build', 'run'), when='@18:')
-    depends_on('py-cython@0.16:', type=('build', 'run'))
-    depends_on('py-cython@0.20:', type=('build', 'run'), when='@18:')
-    # these dependencies might only be needed for pypy
+    depends_on('py-cython@0.16:', type='build')
+    depends_on('py-cython@0.20:', type='build', when='@18:')
     depends_on('py-py', type=('build', 'run'))
     depends_on('py-cffi', type=('build', 'run'))
+    depends_on('py-gevent', type=('build', 'run'))
     depends_on('libzmq')
 
     # by default build and install phases are run
