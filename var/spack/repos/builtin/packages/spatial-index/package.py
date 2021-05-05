@@ -8,9 +8,9 @@ from spack import *
 class SpatialIndex(PythonPackage):
     """Spatial indexer for geometries and morphologies"""
 
-    homepage = "https://bbpcode.epfl.ch/code/#/admin/projects/hpc/SpatialIndex"
-    git      = "ssh://bbpcode.epfl.ch/hpc/SpatialIndex"
-    url      = "ssh://bbpcode.epfl.ch/hpc/SpatialIndex"
+    homepage = "https://bbpgitlab.epfl.ch/hpc/SpatialIndex"
+    git      = "git@bbpgitlab.epfl.ch:hpc/SpatialIndex.git"
+    url      = "git@bbpgitlab.epfl.ch:hpc/SpatialIndex.git"
 
     depends_on("py-setuptools")
     depends_on("cmake")
