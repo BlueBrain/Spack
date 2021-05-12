@@ -94,7 +94,8 @@ class Brayns(CMakePackage):
             '-DBRAYNS_NETWORKING_ENABLED={0}'.format(
                 'ON' if '+net' in self.spec else 'OFF'),
             '-DBRAYNS_DEFLECT_ENABLED={0}'.format(
-                'ON' if '+deflect' in self.spec else 'OFF')
+                'ON' if '+deflect' in self.spec else 'OFF'),
+            '-DBRAYNS_USE_SYSTEM_GLM=ON'
         ]
 
         if '+opendeck' in self.spec:
