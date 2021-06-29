@@ -57,7 +57,7 @@ class Steps(CMakePackage):
     depends_on("gmsh", when="+distmesh")
     depends_on("easyloggingpp", when="~bundle")
     depends_on("random123", when="~bundle")
-    depends_on("sundials@:2.99.99+int64", when="~bundle")
+    depends_on("sundials@4:+int64", when="~bundle")
     depends_on("timemory", when="+timemory")
     conflicts("+distmesh~mpi",
               msg="steps+distmesh requires +mpi")
